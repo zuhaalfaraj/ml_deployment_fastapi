@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 import joblib
-from data import load_data, process_data
+from starter.ml.data import load_data, process_data
 
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
@@ -32,8 +32,6 @@ def train_model(X_train, y_train):
 
     # Save the trained model and encoders
     joblib.dump(model, 'model/trained_model.pkl')
-    joblib.dump(encoder, 'model/encoder.pkl')
-    joblib.dump(lb, 'model/label_encoder.pkl')
 
     return model
 
