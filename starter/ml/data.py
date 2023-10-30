@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
-
+import pandas as pd
 
 def process_data(
     X, categorical_features=[], label=None, training=True, encoder=None, lb=None
@@ -68,3 +68,18 @@ def process_data(
 
     X = np.concatenate([X_continuous, X_categorical], axis=1)
     return X, y, encoder, lb
+
+
+def load_data(path):
+    """
+    load dataset
+    Parameters
+    ----------
+    path : path to the data
+
+    Returns
+    -------
+    panda dataFrame
+
+    """
+    return pd.read_csv(path)
