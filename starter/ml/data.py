@@ -58,6 +58,8 @@ def process_data(
         lb = LabelBinarizer()
         X_categorical = encoder.fit_transform(X_categorical)
         y = lb.fit_transform(y.values).ravel()
+
+        joblib.dump(encoder, 'model/encoder.pkl')
     else:
         X_categorical = encoder.transform(X_categorical)
         try:
