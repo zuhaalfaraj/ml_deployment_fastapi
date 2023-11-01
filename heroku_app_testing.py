@@ -1,6 +1,6 @@
 import requests
 
-url = 'https://ml-deployment-fastapi-a1a7a9f97a62.herokuapp.com/predict/'
+url = 'http://127.0.0.1:8000/predict'
 
 data = {'age': 24,
     'workclass': 'private',

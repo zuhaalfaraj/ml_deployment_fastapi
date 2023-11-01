@@ -79,7 +79,7 @@ def inference(model, X):
 
 def evaluate_model_on_slices(model, df, X, y, slice_feature, encoder, lb):
     """
-    Evaluate the model on slices of the data based on a categorical feature.
+    Evaluate the model on slices of the data based on a categorical feature and save the output to a file.
 
     Args:
     - model (sklearn model): Trained machine learning model.
@@ -91,36 +91,36 @@ def evaluate_model_on_slices(model, df, X, y, slice_feature, encoder, lb):
     - lb (LabelBinarizer): The LabelBinarizer used in data processing.
     """
 
-    categories = df[slice_feature].unique()
+    with open("slice_output.txt", "w") as file:
+        categories = df[slice_feature].unique()
 
-    for category in categories:
-        # Create mask for the category
-        mask = df[slice_feature] == category
+        for category in categories:
+            # Create mask for the category
+            mask = df[slice_feature] == category
 
-        # Apply mask to X and y
-        X_slice = X[mask]
-        y_slice = y[mask]
+            # Apply mask to X and y
+            X_slice = X[mask]
+            y_slice = y[mask]
 
-        # Check if there are samples in the slice
-        if len(X_slice) == 0:
-            print(f"No samples for category '{category}' in {slice_feature}.")
-            continue
+            # Check if there are samples in the slice
+            if len(X_slice) == 0:
+                file.write(f"No samples for category '{category}' in {slice_feature}.\n")
+                continue
 
-        # Make predictions
-        predictions = model.predict(X_slice)
+            # Make predictions
+            predictions = model.predict(X_slice)
 
-        # Assuming y_slice needs to be binarized based on the unique values
-        # This step depends on the format of y; adjust as needed.
-        y_slice_binarized = lb.transform(y_slice)
+            # Assuming y_slice needs to be binarized based on the unique values
+            y_slice_binarized = lb.transform(y_slice)
 
-        # Calculate metrics using compute_model_metrics
-        precision, recall, f1 = compute_model_metrics(y_slice_binarized, predictions)
+            # Calculate metrics using compute_model_metrics
+            precision, recall, f1 = compute_model_metrics(y_slice_binarized, predictions)
 
-        # Calculate accuracy separately as it's not included in compute_model_metrics
-        accuracy = accuracy_score(y_slice_binarized, predictions)
+            # Calculate accuracy separately as it's not included in compute_model_metrics
+            accuracy = accuracy_score(y_slice_binarized, predictions)
 
-        print(f"Metrics for {slice_feature} = {category}:")
-        print(f"Accuracy: {accuracy:.2f}, Precision: {precision:.2f}, Recall: {recall:.2f}, F1 Score: {f1:.2f}\n")
+            file.write(f"Metrics for {slice_feature} = {category}:\n")
+            file.write(f"Accuracy: {accuracy:.2f}, Precision: {precision:.2f}, Recall: {recall:.2f}, F1 Score: {f1:.2f}\n\n")
 
 
 if __name__ == '__main__':
@@ -140,10 +140,9 @@ if __name__ == '__main__':
         "native-country",
     ]
     X_train, y_train, encoder, lb = process_data(
-        train, categorical_features=cat_features, label="salary", training=True
-    )
+        train, categorical_features=cat_features, label="salary", training=True)
 
-    # Proces the test data with the process_data function.
+    # Process the test data with the process_data function.
     X_test, y_test, _, _ = process_data(
         test, categorical_features=cat_features,encoder=encoder, label="salary", training=False
     )
@@ -157,7 +156,7 @@ if __name__ == '__main__':
     print('recall: ', recall)
     print('fbeta: ', fbeta)
 
-    evaluate_model_on_slices(model, test, X_test, y_test, 'salary', encoder, lb)
+    evaluate_model_on_slices(model, test, X_test, y_test, 'education', encoder, lb)
 
 
 

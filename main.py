@@ -29,7 +29,27 @@ class DataItem(BaseModel):
     hours_per_week: int = Field(..., alias='hours-per-week')
     native_country: str = Field(..., alias='native-country')
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
+        json_schema_extra = {
+            "examples": [
+                {
+                    "age": 39,
+                    "workclass": "State-gov",
+                    "fnlgt": 77516,
+                    "education": "Bachelors",
+                    "education-num": 13,
+                    "marital-status": "Never-married",
+                    "occupation": "Adm-clerical",
+                    "relationship": "Not-in-family",
+                    "race": "White",
+                    "sex": "Male",
+                    "capital-gain": 2174,
+                    "capital-loss": 0,
+                    "hours-per-week": 40,
+                    "native-country": "United-States"
+                }
+            ]
+        }
 
 app = FastAPI()
 
@@ -65,7 +85,7 @@ def make_prediction(item: DataItem):
 
         # Perform prediction
 
-        prediction = inference(model, X[:, :6])
+        prediction = inference(model, X)
         print(prediction)
 
         return {"prediction": int(prediction[0])}
@@ -73,6 +93,3 @@ def make_prediction(item: DataItem):
     except Exception as e:
         print(e)  # Log the exception for debugging
         raise HTTPException(status_code=500, detail=str(e))
-
-
-

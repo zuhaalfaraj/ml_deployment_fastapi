@@ -1,0 +1,48 @@
+Metrics for education = assoc-acdm:
+Accuracy: 0.83, Precision: 0.70, Recall: 0.58, F1 Score: 0.63
+
+Metrics for education = prof-school:
+Accuracy: 0.80, Precision: 0.82, Recall: 0.89, F1 Score: 0.85
+
+Metrics for education = hs-grad:
+Accuracy: 0.85, Precision: 0.59, Recall: 0.36, F1 Score: 0.45
+
+Metrics for education = some-college:
+Accuracy: 0.86, Precision: 0.67, Recall: 0.53, F1 Score: 0.59
+
+Metrics for education = bachelors:
+Accuracy: 0.78, Precision: 0.75, Recall: 0.73, F1 Score: 0.74
+
+Metrics for education = 7th-8th:
+Accuracy: 0.91, Precision: 0.00, Recall: 0.00, F1 Score: 1.00
+
+Metrics for education = masters:
+Accuracy: 0.81, Precision: 0.81, Recall: 0.84, F1 Score: 0.82
+
+Metrics for education = assoc-voc:
+Accuracy: 0.83, Precision: 0.66, Recall: 0.66, F1 Score: 0.66
+
+Metrics for education = 11th:
+Accuracy: 0.96, Precision: 0.86, Recall: 0.40, F1 Score: 0.55
+
+Metrics for education = 12th:
+Accuracy: 0.93, Precision: 1.00, Recall: 0.12, F1 Score: 0.22
+
+Metrics for education = 5th-6th:
+Accuracy: 0.95, Precision: 1.00, Recall: 0.40, F1 Score: 0.57
+
+Metrics for education = 10th:
+Accuracy: 0.94, Precision: 0.80, Recall: 0.29, F1 Score: 0.42
+
+Metrics for education = 9th:
+Accuracy: 0.95, Precision: 1.00, Recall: 0.17, F1 Score: 0.29
+
+Metrics for education = preschool:
+Accuracy: 0.92, Precision: 0.00, Recall: 1.00, F1 Score: 0.00
+
+Metrics for education = doctorate:
+Accuracy: 0.82, Precision: 0.89, Recall: 0.89, F1 Score: 0.89
+
+Metrics for education = 1st-4th:
+Accuracy: 1.00, Precision: 1.00, Recall: 1.00, F1 Score: 1.00
+
